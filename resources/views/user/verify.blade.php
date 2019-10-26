@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">Email Verification</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,13 +14,7 @@
                         </div>
                     @endif
 
-                    You are logged in!
-                    <br>
-                    @if (Auth::user()->verified)
-                        Your email is verified.
-                    @else
-                        Your email has not been verified.
-                    @endif
+                    {{ $result }}
                 </div>
             </div>
         </div>

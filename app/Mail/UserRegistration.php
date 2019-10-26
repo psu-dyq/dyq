@@ -35,6 +35,7 @@ class UserRegistration extends Mailable
         return $this->markdown('emails.user.registration')
                     ->with([
                         'name' => $this->user->name,
+                        'url' => $this->user->emailVerification->getLink(),
                     ]);
     }
 }

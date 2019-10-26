@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Util;
 use App\Http\Controllers\Controller;
 use App\User;
+Use App\EmailVerification;
 use App\Mail\UserRegistration;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -72,6 +74,10 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'phone' => $data['phone'],
         ]);
+        $emailVerification = new EmailVerification;
+        $emailVerification->user()->associate($user);
+        $emailVerification->code = Util::randomCode();
+        $emailVerification->save();
 	Mail::to($user->email)->send(new UserRegistration($user));
 	return $user;
     }
