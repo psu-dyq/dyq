@@ -19,4 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/user/verify', 'User@verify')->name('user.verify');
+Route::get('/user', 'User@index')->name('user');
+Route::get('/user/password', 'User@password')->name('user.password');
+Route::post('/user/password', 'User@password')->name('user.password');
 
