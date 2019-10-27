@@ -12,6 +12,8 @@
 */
 
 Route::get('/', function () {
+    if (Auth::user())
+        return redirect('home');
     return view('welcome');
 });
 
@@ -20,6 +22,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/account/verify', 'AccountController@verify')->name('account.verify');
 Route::get('/account', 'AccountController@index')->name('account');
+Route::post('/account', 'AccountController@index')->name('account');
 Route::get('/account/password', 'AccountController@password')->name('account.password');
 Route::post('/account/password', 'AccountController@password')->name('account.password');
 Route::get('/user', 'UserController@index')->name('user');

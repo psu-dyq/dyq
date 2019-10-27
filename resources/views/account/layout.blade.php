@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-1">
                 <nav class="nav flex-column">
-                    <a class="nav-link {{ Request::is('account')?' disabled':'' }}" href="{{ route('account') }}">Dashboard</a>
+                    <a class="nav-link {{ Request::is('account')?' disabled':'' }}" href="{{ route('account') }}">Profile</a>
                     <a class="nav-link {{ Request::is('account/password')?' disabled':'' }}" href="{{ route('account.password') }}">Password</a>
                 </nav>
             </div>

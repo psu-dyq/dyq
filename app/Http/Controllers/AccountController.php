@@ -36,9 +36,18 @@ class AccountController extends Controller
         return view('account.verify', $response);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return view('account.index');
+        $data = [];
+        if ($request->isMethod('post'))
+        {
+            $phone = $request->input('phone');
+            $user = Auth::user();
+            $user->phone = $phone;
+            $user->save();
+            $data['result'] = 'Change has been saved';
+        }
+        return view('account.index', $data);
     }
 
     public function password(Request $request)
