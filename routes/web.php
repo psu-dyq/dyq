@@ -18,8 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/user/verify', 'User@verify')->name('user.verify');
-Route::get('/user', 'User@index')->name('user');
-Route::get('/user/password', 'User@password')->name('user.password');
-Route::post('/user/password', 'User@password')->name('user.password');
+Route::get('/account/verify', 'AccountController@verify')->name('account.verify');
+Route::get('/account', 'AccountController@index')->name('account');
+Route::get('/account/password', 'AccountController@password')->name('account.password');
+Route::post('/account/password', 'AccountController@password')->name('account.password');
 

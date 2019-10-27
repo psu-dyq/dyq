@@ -5,12 +5,12 @@
         <div class="row">
             <div class="col-1">
                 <nav class="nav flex-column">
-                    <a class="nav-link {{ Request::is('user')?' disabled':'' }}" href="{{ route('user') }}">Dashboard</a>
-                    <a class="nav-link {{ Request::is('user/password')?' disabled':'' }}" href="{{ route('user.password') }}">Password</a>
+                    <a class="nav-link {{ Request::is('account')?' disabled':'' }}" href="{{ route('account') }}">Dashboard</a>
+                    <a class="nav-link {{ Request::is('account/password')?' disabled':'' }}" href="{{ route('account.password') }}">Password</a>
                 </nav>
             </div>
             <div class="col-11">
-                @section ('user-content')
+                @section ('account-content')
                 @show
             </div>
         </div>

@@ -1,6 +1,6 @@
-@extends ('user.layout')
+@extends ('account.layout')
 
-@section ('user-content')
+@section ('account-content')
     <div class="content">
         <div class="title m-b-md">Dashboard</div>
     </div>

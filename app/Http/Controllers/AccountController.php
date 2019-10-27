@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
-class User extends Controller
+class AccountController extends Controller
 {
     //
     public function __construct()
@@ -19,7 +20,7 @@ class User extends Controller
         $response = ['result' => ''];
         $user_id = request('user');
         $code = request('code');
-        $user = \App\User::find($user_id);
+        $user = User::find($user_id);
         if ($user==null || $user->verified || $user->emailverification==null || $user->emailVerification->code!=$code)
         {
             $response['result'] = "Invalid request";
@@ -32,12 +33,12 @@ class User extends Controller
             $user->emailVerification->delete();
             $user->save();
         }
-        return view('user.verify', $response);
+        return view('account.verify', $response);
     }
 
     public function index()
     {
-        return view('user.index');
+        return view('account.index');
     }
 
     public function password(Request $request)
@@ -58,6 +59,6 @@ class User extends Controller
                 $user->save();
             }
         }
-        return view('user.password', $response);
+        return view('account.password', $response);
     }
 }

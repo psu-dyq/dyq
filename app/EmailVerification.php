@@ -20,7 +20,7 @@ class EmailVerification extends Model
 
     public function getLink()
     {
-        return route('user.verify', [
+        return route('account.verify', [
             'user' => $this->user->id,
             'code' => $this->user->emailVerification->code,
         ]);
