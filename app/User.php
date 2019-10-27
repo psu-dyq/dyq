@@ -3,6 +3,7 @@
 namespace App;
 
 use App\EmailVerification;
+use App\Employee;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -43,5 +44,15 @@ class User extends Authenticatable
     public function emailVerification()
     {
         return $this->hasOne('App\EmailVerification');
+    }
+
+    public function employee()
+    {
+        return $this->hasOne('App\Employee');
+    }
+
+    public function isEmployee()
+    {
+        return $this->employee!=null;
     }
 }
