@@ -38,4 +38,10 @@ Route::post('/court/{id}/create', 'SiteController@create')->name('site.create');
 Route::get('/court/site/{id}', 'SiteController@site')->name('site.site');
 Route::post('/court/site/{id}', 'SiteController@site')->name('site.site');
 Route::get('/court/site/delete/{id}', 'SiteController@delete')->name('site.delete');
+Route::get('/event', 'EventController@index')->name('event');
+Route::get('/event/create', 'EventController@create')->name('event.create');
+Route::post('/event/create', 'EventController@create')->name('event.create');
+Route::get('/event/{id}', 'EventController@event')->name('event.event');
+Route::post('/event/{id}', 'EventController@event')->name('event.event');
+Route::get('/event/delete/{id}', 'EventController@delete')->name('event.delete');
 

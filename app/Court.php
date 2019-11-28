@@ -13,4 +13,9 @@ class Court extends Model
     {
         return $this->hasMany('App\Site');
     }
+
+    public function events()
+    {
+        return $this->hasMany('App\Event');
+    }
 }
