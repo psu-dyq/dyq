@@ -28,4 +28,9 @@ Route::post('/account/password', 'AccountController@password')->name('account.pa
 Route::get('/user', 'UserController@index')->name('user');
 Route::get('/user/addemployee/{id}', 'UserController@addEmployee')->name('user.addemployee');
 Route::get('/user/deleteemployee/{id}', 'UserController@deleteEmployee')->name('user.deleteemployee');
+Route::get('/court', 'CourtController@index')->name('court');
+Route::get('/court/create', 'CourtController@create')->name('court.create');
+Route::post('/court/create', 'CourtController@create')->name('court.create');
+Route::get('/court/{id}', 'CourtController@court')->name('court.court');
+Route::post('/court/{id}', 'CourtController@court')->name('court.court');
 

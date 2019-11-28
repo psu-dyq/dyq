@@ -8,6 +8,9 @@
                     @if (true)
                         <a class="nav-link {{ Request::is('home')?' disabled':'' }}" href="{{ route('home') }}">Home</a>
                     @endif
+                    @if (true)
+                        <a class="nav-link {{ Request::is('court')?' disabled':'' }}" href="{{ route('court') }}">Court</a>
+                    @endif
                     @if (Auth::user()->isEmployee())
                         <a class="nav-link {{ Request::is('user')?' disabled':'' }}" href="{{ route('user') }}">User</a>
                     @endif
