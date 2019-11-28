@@ -44,4 +44,9 @@ Route::post('/event/create', 'EventController@create')->name('event.create');
 Route::get('/event/{id}', 'EventController@event')->name('event.event');
 Route::post('/event/{id}', 'EventController@event')->name('event.event');
 Route::get('/event/delete/{id}', 'EventController@delete')->name('event.delete');
+Route::get('/event/event_price/create/{id}', 'EventPriceController@create')->name('event_price.create');
+Route::post('/event/event_price/create/{id}', 'EventPriceController@create')->name('event_price.create');
+Route::get('/event/event_price/{id}', 'EventPriceController@eventPrice')->name('event_price.event_price');
+Route::post('/event/event_price/{id}', 'EventPriceController@eventPrice')->name('event_price.event_price');
+Route::get('/event/event_price/delete/{id}', 'EventPriceController@delete')->name('event_price.delete');
 

@@ -29,6 +29,24 @@
                 <button type="submit">Modify</button>
             </div>
         </form>
+        <a class="nav-link" href="{{ route('event_price.create', ['id' => $event->id]) }}">Create event price</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Level</th>
+                    <th scope="col">Capacity</th>
+                    <th scope="col">Price</th>
+                </tr>
+            <tbody>
+                @foreach ($event->eventPrices as $eventPrice)
+                    <tr>
+                        <td><a href="{{ route('event_price.event_price', ['id' => $eventPrice->id]) }}">{{ $eventPrice->site->level }}</a></td>
+                        <td>{{ $eventPrice->site->capacity }}</td>
+                        <td>{{ $eventPrice->price }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
         <div>
             <a class="nav-link" href="{{ route('event.delete', ['id' => $event->id]) }}">Delete</a>
         </div>

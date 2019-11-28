@@ -13,4 +13,9 @@ class Site extends Model
     {
         return $this->belongsTo('App\Court');
     }
+
+    public function eventPrices()
+    {
+        return $this->hasMany('App\EventPrice');
+    }
 }
