@@ -11,11 +11,17 @@
             @csrf
             <div>
                 Name
-                <input type="text" name="name">
+                <input type="text" name="name" value="{{ old('name') }}">
+                @error('name')
+                    {{ $message }}
+                @enderror
             </div>
             <div>
                 Location
-                <input type="text" name="location">
+                <input type="text" name="location" value="{{ old('location') }}">
+                @error('location')
+                    {{ $message }}
+                @enderror
             </div>
             <div>
                 <button type="submit">Create</button>

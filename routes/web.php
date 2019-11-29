@@ -33,13 +33,13 @@ Route::get('/user/addemployee/{id}', 'UserController@addEmployee')->name('user.a
 Route::get('/user/deleteemployee/{id}', 'UserController@deleteEmployee')->name('user.deleteemployee');
 Route::get('/court', 'CourtController@index')->name('court');
 Route::get('/court/create', 'CourtController@create')->name('court.create');
-Route::post('/court/create', 'CourtController@create')->name('court.create');
+Route::post('/court/create', 'CourtController@createPost')->name('court.create');
 Route::get('/court/{id}', 'CourtController@court')->name('court.court');
-Route::post('/court/{id}', 'CourtController@court')->name('court.court');
+Route::post('/court/{id}', 'CourtController@courtPost')->name('court.court');
 Route::get('/court/{id}/create', 'SiteController@create')->name('site.create');
-Route::post('/court/{id}/create', 'SiteController@create')->name('site.create');
+Route::post('/court/{id}/create', 'SiteController@createPost')->name('site.create');
 Route::get('/court/site/{id}', 'SiteController@site')->name('site.site');
-Route::post('/court/site/{id}', 'SiteController@site')->name('site.site');
+Route::post('/court/site/{id}', 'SiteController@sitePost')->name('site.site');
 Route::get('/court/site/delete/{id}', 'SiteController@delete')->name('site.delete');
 Route::get('/event', 'EventController@index')->name('event');
 Route::get('/event/create', 'EventController@create')->name('event.create');

@@ -21,11 +21,17 @@
             @csrf
             <div>
                 Level
-                <input type="text" name="level">
+                <input type="text" name="level" value="{{ old('level') }}">
+                @error('level')
+                    {{ $message }}
+                @enderror
             </div>
             <div>
                 Capacity
-                <input type="text" name="capacity">
+                <input type="text" name="capacity" value="{{ old('capacity') }}">
+                @error('capacity')
+                    {{ $message }}
+                @enderror
             </div>
             <div>
                 <button type="submit">Create</button>

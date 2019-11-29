@@ -22,10 +22,16 @@
             <div>
                 Level
                 <input type="text" name="level" value="{{ $site->level }}">
+                @error('level')
+                    {{ $message }}
+                @enderror
             </div>
             <div>
                 Capacity
                 <input type="text" name="capacity" value="{{ $site->capacity }}">
+                @error('capacity')
+                    {{ $message }}
+                @enderror
             </div>
             <div>
                 <button type="submit">Modify</button>

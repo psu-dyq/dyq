@@ -12,10 +12,16 @@
             <div>
                 Name
                 <input type="text" name="name" value="{{ $court->name }}">
+                @error('name')
+                    {{ $message }}
+                @enderror
             </div>
             <div>
                 Location
                 <input type="text" name="location" value="{{ $court->location }}">
+                @error('location')
+                    {{ $message }}
+                @enderror
             </div>
             <div>
                 <button type="submit">Modify</button>
