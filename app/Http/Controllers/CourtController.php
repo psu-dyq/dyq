@@ -82,4 +82,15 @@ class CourtController extends Controller
         $result = 'The court information has been modified.';
         return redirect()->route('court.court', ['id' => $id])->with(['result' => $result]);
     }
+
+    public function delete($id)
+    {
+        if (!Auth::user()->hasPermission('court'))
+            return abort(404);
+        $court = Court::find($id);
+        if (!$court)
+            abort(500);
+        $court->delete();
+        return redirect()->route('court');
+    }
 }

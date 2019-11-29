@@ -34,6 +34,7 @@ Route::get('/user/deleteemployee/{id}', 'UserController@deleteEmployee')->name('
 Route::get('/court', 'CourtController@index')->name('court');
 Route::get('/court/create', 'CourtController@create')->name('court.create');
 Route::post('/court/create', 'CourtController@createPost')->name('court.create');
+Route::get('/court/delete/{id}', 'CourtController@delete')->name('court.delete');
 Route::get('/court/{id}', 'CourtController@court')->name('court.court');
 Route::post('/court/{id}', 'CourtController@courtPost')->name('court.court');
 Route::get('/court/{id}/create', 'SiteController@create')->name('site.create');

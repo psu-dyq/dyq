@@ -45,5 +45,8 @@
                 @endforeach
             </tbody>
         </table>
+        <div>
+            <a class="nav-link" href="{{ route('court.delete', ['id' => $court->id]) }}">Delete</a>
+        </div>
     </div>
 @endsection
