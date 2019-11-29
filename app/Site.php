@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Site extends Model
 {
     //
-    protected $table = 'site';
+    protected $table = 'Site';
 
     public function court()
     {
