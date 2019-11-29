@@ -9,6 +9,9 @@
                         <a class="nav-link {{ Request::is('home')?' disabled':'' }}" href="{{ route('home') }}">Home</a>
                     @endif
                     @if (true)
+                        <a class="nav-link {{ Request::is('ticket')?' disabled':'' }}" href="{{ route('ticket') }}">Ticket</a>
+                    @endif
+                    @if (true)
                         <a class="nav-link {{ Request::is('event')?' disabled':'' }}" href="{{ route('event') }}">Event</a>
                     @endif
                     @if (true)

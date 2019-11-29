@@ -49,4 +49,7 @@ Route::post('/event/event_price/create/{id}', 'EventPriceController@create')->na
 Route::get('/event/event_price/{id}', 'EventPriceController@eventPrice')->name('event_price.event_price');
 Route::post('/event/event_price/{id}', 'EventPriceController@eventPrice')->name('event_price.event_price');
 Route::get('/event/event_price/delete/{id}', 'EventPriceController@delete')->name('event_price.delete');
+Route::get('/ticket', 'TicketController@index')->name('ticket');
+Route::get('/ticket/buy/{id}', 'TicketController@buy')->name('ticket.buy');
+Route::get('/ticket/cancel/{id}', 'TicketController@cancel')->name('ticket.cancel');
 

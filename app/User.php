@@ -46,6 +46,11 @@ class User extends Authenticatable
         return $this->hasOne('App\EmailVerification');
     }
 
+    public function tickets()
+    {
+        return $this->hasMany('App\Ticket');
+    }
+
     public function employee()
     {
         return $this->hasOne('App\Employee');

@@ -18,4 +18,9 @@ class EventPrice extends Model
     {
         return $this->belongsTo('App\Site');
     }
+
+    public function tickets()
+    {
+        return $this->hasMany('App\Ticket');
+    }
 }

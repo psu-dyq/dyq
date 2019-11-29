@@ -36,6 +36,7 @@
                     <th scope="col">Level</th>
                     <th scope="col">Capacity</th>
                     <th scope="col">Price</th>
+                    <th scope="col">Action</th>
                 </tr>
             <tbody>
                 @foreach ($event->eventPrices as $eventPrice)
@@ -43,6 +44,7 @@
                         <td><a href="{{ route('event_price.event_price', ['id' => $eventPrice->id]) }}">{{ $eventPrice->site->level }}</a></td>
                         <td>{{ $eventPrice->site->capacity }}</td>
                         <td>{{ $eventPrice->price }}</td>
+                        <td><a href="{{ route('ticket.buy', ['id' => $eventPrice->id]) }}">Buy</td>
                     </tr>
                 @endforeach
             </tbody>
