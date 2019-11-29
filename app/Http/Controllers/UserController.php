@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Employee;
+use App\Permission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,6 +21,14 @@ class UserController extends Controller
         if (!Auth::user()->isEmployee())
             return redirect('home');
         return view('user.index', ['users' => User::all()]);
+    }
+
+    public function user($id)
+    {
+        $data = [];
+        $user = User::find($id);
+        $data['user'] = $user;
+        return view('user.user', $data);
     }
 
     public function addEmployee($id)
@@ -54,5 +63,20 @@ class UserController extends Controller
         else
             $result = 'Invalid operation';
         return view('user.index', ['users' => User::all(), 'result' => $result]);
+    }
+
+    public function enable($id, $type)
+    {
+        $permission = new Permission;
+        $permission->user()->associate(User::find($id));
+        $permission->type = $type;
+        $permission->save();
+        return redirect(route('user.user', ['id' => $id]));
+    }
+
+    public function disable($id, $type)
+    {
+        User::find($id)->permissions->where('type', $type)->first()->delete();
+        return redirect(route('user.user', ['id' => $id]));
     }
 }

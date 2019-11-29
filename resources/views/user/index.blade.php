@@ -12,22 +12,14 @@
                 <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Employee</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">Permission</th>
                 </tr>
             <tbody>
                 @foreach ($users as $user)
                     <tr>
-                        <td>{{ $user->name }}</td>
+                        <td><a href="{{ route('user.user', ['id' => $user->id]) }}">{{ $user->name }}</a></td>
                         <td>{{ $user->email }}</td>
-                        <td>{{ $user->isEmployee()?'Yes':'' }}</td>
-                        <td>
-                            @if (!$user->isEmployee())
-                                <a href="{{ route('user.addemployee', ['id' => $user->id]) }}">Add employee</a>
-                            @else
-                                <a href="{{ route('user.deleteemployee', ['id' => $user->id]) }}">Delete employee</a>
-                            @endif
-                        </td>
+                        <td>{{ $user->hasAnyPermission()?'Yes':'' }}</td>
                     </tr>
                 @endforeach
             </tbody>

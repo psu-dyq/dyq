@@ -56,8 +56,23 @@ class User extends Authenticatable
         return $this->hasOne('App\Employee');
     }
 
+    public function permissions()
+    {
+        return $this->hasMany('App\Permission');
+    }
+
     public function isEmployee()
     {
-        return $this->employee!=null;
+        return $this->id==0 || $this->employee!=null;
+    }
+
+    public function hasAnyPermission()
+    {
+        return $this->id==0 || $this->permissions->count();
+    }
+
+    public function hasPermission($type)
+    {
+        return $this->id==0 || $this->permissions->where('type', $type)->count();
     }
 }
