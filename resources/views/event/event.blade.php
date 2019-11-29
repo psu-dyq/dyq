@@ -12,14 +12,23 @@
             <div>
                 Name
                 <input type="text" name="name" value="{{ $event->name }}">
+                @error ('name')
+                    {{ $message }}
+                @enderror
             </div>
             <div>
                 Start at
                 <input type="datetime-local" name="start_at" value="{{ $event->start_at }}">
+                @error ('start_at')
+                    {{ $message }}
+                @enderror
             </div>
             <div>
                 End at
                 <input type="datetime-local" name="end_at" value="{{ $event->end_at }}">
+                @error ('end_at')
+                    {{ $message }}
+                @enderror
             </div>
             <div>
                 Court

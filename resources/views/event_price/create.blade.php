@@ -35,14 +35,21 @@
                         @if ($event->eventPrices->where('site_id', $site->id)->count())
                             @continue
                         @endif
-                        <option value="{{ $site->id }}">{{ $site->level }}</option>
+                        <option value="{{ $site->id }}" {{ $site->id==old('site')?'selected':'' }}>{{ $site->level }}</option>
+
 
                     @endforeach
                 </select>
+                @error ('site')
+                    {{ $message }}
+                @enderror
             </div>
             <div>
                 Price
-                <input type="text" name="price">
+                <input type="text" name="price" value="{{ old('price') }}">
+                @error ('price')
+                    {{ $message }}
+                @enderror
             </div>
             <div>
                 <button type="submit">Create</button>

@@ -35,6 +35,9 @@
             <div>
                 Price
                 <input type="text" name="price" value="{{ $eventPrice->price }}">
+                @error ('price')
+                    {{ $message }}
+                @enderror
             </div>
             <div>
                 <button type="submit">Modify</button>
