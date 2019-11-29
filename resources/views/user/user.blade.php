@@ -30,7 +30,7 @@
                     <th scope="col">Action</th>
                 </tr>
             <tbody>
-                @foreach (['event', 'court', 'user'] as $type)
+                @foreach (App\Permission::$Permissions as $type)
                     <tr>
                         <td>{{ $type }}</td>
                         <td>{{ $user->hasPermission($type)?'Yes':'' }}</td>

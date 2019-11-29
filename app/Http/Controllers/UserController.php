@@ -18,65 +18,59 @@ class UserController extends Controller
 
     public function index()
     {
-        if (!Auth::user()->isEmployee())
-            return redirect('home');
+        if (!Auth::user()->hasPermission('user'))
+            return abort(404);
         return view('user.index', ['users' => User::all()]);
     }
 
     public function user($id)
     {
+        if (!Auth::user()->hasPermission('user'))
+            return abort(404);
         $data = [];
         $user = User::find($id);
+        if (!$user)
+            return abort(500);
         $data['user'] = $user;
         return view('user.user', $data);
     }
 
-    public function addEmployee($id)
-    {
-        if (!Auth::user()->isEmployee())
-            return redirect('home');
-        $result = '';
-        $user = User::find($id);
-        if ($user && !$user->isEmployee())
-        {
-            $e = new Employee;
-            $e->user()->associate($user);
-            $e->save();
-            $result = $user->name.' is an employee now';
-        }
-        else
-            $result = 'Invalid operation';
-        return view('user.index', ['users' => User::all(), 'result' => $result]);
-    }
-
-    public function deleteEmployee($id)
-    {
-        if (!Auth::user()->isEmployee())
-            return redirect('home');
-        $result = '';
-        $user = User::find($id);
-        if ($user && $user->isEmployee())
-        {
-            $user->employee->delete();
-            $result = $user->name.' is no longer an employee';
-        }
-        else
-            $result = 'Invalid operation';
-        return view('user.index', ['users' => User::all(), 'result' => $result]);
-    }
-
     public function enable($id, $type)
     {
+        if (!Auth::user()->hasPermission('user'))
+            return abort(404);
+        if (!in_array($type, Permission::$Permissions))
+            return abort(500);
+        $user = User::find($id);
+        if (!$user)
+            return abort(500);
         $permission = new Permission;
-        $permission->user()->associate(User::find($id));
+        $permission->user()->associate($user);
         $permission->type = $type;
-        $permission->save();
-        return redirect(route('user.user', ['id' => $id]));
+        try
+        {
+            $permission->save();
+        }
+        catch (\Exception $e)
+        {
+            if (!$user->hasPermission($type))
+                return abort(500);
+        }
+        return redirect()->route('user.user', ['id' => $id]);
     }
 
     public function disable($id, $type)
     {
-        User::find($id)->permissions->where('type', $type)->first()->delete();
-        return redirect(route('user.user', ['id' => $id]));
+        if (!Auth::user()->hasPermission('user'))
+            return abort(404);
+        if (!in_array($type, Permission::$Permissions))
+            return abort(500);
+        $user = User::find($id);
+        if (!$user)
+            return abort(500);
+        $permission = $user->permissions->where('type', $type)->first();
+        if ($permission)
+            $permission->delete();
+        return redirect()->route('user.user', ['id' => $id]);
     }
 }
