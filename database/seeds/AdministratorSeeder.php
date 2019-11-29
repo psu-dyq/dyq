@@ -17,11 +17,12 @@ class AdministratorSeeder extends Seeder
         if (User::find(0))
             return;
         $admin = new User;
-        $admin->id = 0;
         $admin->email = 'admin@dyq';
         $admin->password = Hash::make('admin@dyq');
         $admin->name = 'Administrator';
         $admin->verified = true;
+        $admin->save();
+        $admin->id = 0;
         $admin->save();
     }
 }
