@@ -7,6 +7,7 @@ use App\Employee;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -64,5 +65,10 @@ class User extends Authenticatable
     public function hasPermission($type)
     {
         return $this->id==0 || $this->permissions->where('type', $type)->count();
+    }
+
+    public function hasEvent($id)
+    {
+        return DB::table('Ticket')->join('EventPrice', 'Ticket.event_price_id', '=', 'EventPrice.id')->where('Ticket.user_id', $this->id)->where('EventPrice.event_id', $id)->count()>0;
     }
 }
