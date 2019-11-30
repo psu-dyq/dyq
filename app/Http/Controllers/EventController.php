@@ -53,8 +53,6 @@ class EventController extends Controller
 
     public function event(Request $request, $id)
     {
-        if (!Auth::user()->hasPermission('event'))
-            return abort(404);
         $data = [];
         $event = Event::find($id);
         if (!$event)
@@ -69,7 +67,7 @@ class EventController extends Controller
     public function eventPost(Request $request, $id)
     {
         if (!Auth::user()->hasPermission('event'))
-            return abort(404);
+            return redirect()->route('event.event', ['id' => $id]);
         $data = [];
         $event = Event::find($id);
         if (!$event)

@@ -59,8 +59,6 @@ class EventPriceController extends Controller
 
     public function eventPrice(Request $request, $id)
     {
-        if (!Auth::user()->hasPermission('event'))
-            return abort(404);
         $data = [];
         $eventPrice = EventPrice::find($id);
         if (!$eventPrice)
@@ -75,7 +73,7 @@ class EventPriceController extends Controller
     public function eventPricePost(Request $request, $id)
     {
         if (!Auth::user()->hasPermission('event'))
-            return abort(404);
+            return redirect()->route('event_price.event_price', ['id' => $id]);
         $data = [];
         $eventPrice = EventPrice::find($id);
         if (!$eventPrice)
