@@ -108,7 +108,16 @@
                                 <td><a href="{{ route('site.site', ['id' => $eventPrice->site->id])}}">{{ $eventPrice->site->level }}</a></td>
                                 <td>{{ $eventPrice->site->capacity }}</td>
                                 <td><a href="{{ route('event_price.event_price', ['id' => $eventPrice->id])}}">{{ $eventPrice->price }}</a></td>
-                                <td><a href="{{ route('ticket.buy', ['id' => $eventPrice->id]) }}">Buy</td>
+                                <td>
+                                    @if (Auth::user()->hasEventPrice($eventPrice->id))
+                                        <a href="{{ route('ticket.cancel', ['id' => Auth::user()->tickets->where('event_price_id', $eventPrice->id)->first()->id]) }}">Cancel</a>
+                                    @elseif (Auth::user()->hasEvent($event->id))
+                                    @elseif ($eventPrice->tickets->count()>=$eventPrice->site->capacity)
+                                        Sold Out
+                                    @else
+                                        <a href="{{ route('ticket.buy', ['id' => $eventPrice->id]) }}">Buy</a>
+                                    @endif
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

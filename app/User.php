@@ -4,6 +4,7 @@ namespace App;
 
 use App\EmailVerification;
 use App\Employee;
+use App\EventPrice;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -70,5 +71,10 @@ class User extends Authenticatable
     public function hasEvent($id)
     {
         return DB::table('Ticket')->join('EventPrice', 'Ticket.event_price_id', '=', 'EventPrice.id')->where('Ticket.user_id', $this->id)->where('EventPrice.event_id', $id)->count()>0;
+    }
+
+    public function hasEventPrice($id)
+    {
+        return $this->tickets->where('event_price_id', $id)->count()>0;
     }
 }
