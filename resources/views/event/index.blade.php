@@ -9,9 +9,11 @@
                         Event
                     </p>
                 </div>
+@if (Auth::user()->hasPermission('event'))
                 <div class="row justify-content-center pb-4">
                     <a class="btn btn-primary" href="{{ route('event.create') }}">Create</a>
                 </div>
+@endif
                 <table class="table table-striped">
                     <thead>
                         <tr>

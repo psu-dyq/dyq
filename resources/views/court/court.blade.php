@@ -20,6 +20,7 @@
                             @csrf
                             <div class="form-group row">
                                 <label class="col-md-4">Name</label>
+@if (Auth::user()->hasPermission('court'))
                                 <div class="col-md-6">
                                     <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" value="{{ $court->name }}">
                                     @error ('name')
@@ -28,9 +29,13 @@
                                         </span>
                                     @enderror
                                 </div>
+@else
+                                <label class="col-md-6">{{ $court->name }}</label>
+@endif
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-4">Location</label>
+@if (Auth::user()->hasPermission('court'))
                                 <div class="col-md-6">
                                     <input class="form-control @error('location') is-invalid @enderror" type="text" name="location" value="{{ $court->location }}">
                                     @error ('location')
@@ -39,26 +44,35 @@
                                         </span>
                                     @enderror
                                 </div>
+@else
+                                <label class="col-md-6">{{ $court->location }}</label>
+@endif
                             </div>
+@if (Auth::user()->hasPermission('court'))
                             <div class="form-group row">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">Modify</button>
                                 </div>
                             </div>
+@endif
                         </form>
                     </div>
                 </div>
+@if (Auth::user()->hasPermission('court'))
                 <div class="row justify-content-center py-4">
                     <a class="btn btn-primary" href="{{ route('court.delete', ['id' => $court->id]) }}">Delete Court</a>
                 </div>
+@endif
                 <div class="row justify-content-center py-4">
                     <p class="h4">
                         Site
                     </p>
                 </div>
+@if (Auth::user()->hasPermission('court'))
                 <div class="row justify-content-center pb-4">
                     <a class="btn btn-primary" href="{{ route('site.create', ['id' => $court->id]) }}">Create Site</a>
                 </div>
+@endif
                 <table class="table table-striped">
                     <thead>
                         <tr>

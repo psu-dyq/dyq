@@ -50,6 +50,7 @@
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-4">Price</label>
+@if (Auth::user()->hasPermission('event'))
                                 <div class="col-md-6">
                                     <input class="form-control @error('price') is-invalid @enderror" type="text" name="price" value="{{ $eventPrice->price }}">
                                     @error ('price')
@@ -58,18 +59,25 @@
                                         </span>
                                     @enderror
                                 </div>
+@else
+                                <label class="col-md-6">{{ $eventPrice->price }}</label>
+@endif
                             </div>
+@if (Auth::user()->hasPermission('event'))
                             <div class="form-group row">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">Modify</button>
                                 </div>
                             </div>
+@endif
                         </form>
                     </div>
                 </div>
+@if (Auth::user()->hasPermission('event'))
                 <div class="row justify-content-center py-4">
                     <a class="btn btn-primary" href="{{ route('event_price.delete', ['id' => $eventPrice->id]) }}">Delete Price</a>
                 </div>
+@endif
             </div>
         </div>
     </div>
