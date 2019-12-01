@@ -17,19 +17,19 @@
                             <div class="form-group row">
                                 <label for="password" class="col-md-4">Password</label>
                                 <div class="col-md-6">
-                                    <input name="password" type="password">
+                                    <input class="form-control" name="password" type="password">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="password" class="col-md-4">New Password</label>
                                 <div class="col-md-6">
-                                    <input name="new_password" type="password">
+                                    <input class="form-control" name="new_password" type="password">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="password" class="col-md-4">Confirm Password</label>
                                 <div class="col-md-6">
-                                    <input name="new_password_confirmation" type="password">
+                                    <input class="form-control" name="new_password_confirmation" type="password">
                                 </div>
                             </div>
                             <div class="form-group row">
